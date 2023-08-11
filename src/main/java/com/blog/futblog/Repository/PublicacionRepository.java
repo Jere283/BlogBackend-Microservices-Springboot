@@ -1,9 +1,9 @@
 package com.blog.futblog.Repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
 
 import com.blog.futblog.Models.Publicacion;
 
-public interface PublicacionRepository extends JpaRepository<Publicacion, Integer> {
+public interface PublicacionRepository extends CrudRepository<Publicacion, Integer> {
 
 }

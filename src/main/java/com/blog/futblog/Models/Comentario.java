@@ -21,7 +21,7 @@ public class Comentario {
 
     private String contenido;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "usuario_id", referencedColumnName = "id")
     private User usuario;
 

@@ -1,5 +1,7 @@
 package com.blog.futblog.Services.Impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,4 +34,11 @@ public class PublicacionImpl implements PublicacionService {
         return publicacion;
 
     }
+
+    @Override
+    public List<Publicacion> getAllPublicaciones() {
+        List<Publicacion> publicaciones = (List<Publicacion>) publicacionRepository.findAll();
+        return publicaciones;
+    }
+
 }

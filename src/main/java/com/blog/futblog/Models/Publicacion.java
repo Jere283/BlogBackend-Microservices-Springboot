@@ -34,7 +34,7 @@ public class Publicacion {
 
     private Integer likes;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_usuario", referencedColumnName = "id")
     private User usuario;
 

@@ -9,5 +9,7 @@ public interface ComentarioService {
 
     public Comentario saveComentario(ComentarioDTO dto);
 
+    public Comentario guarardComentarios(int publicacionId, ComentarioDTO comentarioDTO);
+
     public List<Comentario> getComentariosByPublicacion(Integer idPublicacion);
 }

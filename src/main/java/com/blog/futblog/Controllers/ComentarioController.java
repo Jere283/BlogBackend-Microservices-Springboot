@@ -34,6 +34,15 @@ public class ComentarioController {
         return new ResponseEntity<String>("El comentario fue guardado correctamente", HttpStatus.OK);
     }
 
+    @PostMapping("/crear/id/{publicacionId}")
+    public ResponseEntity<String> guardarComentario(
+            @PathVariable int publicacionId,
+            @RequestBody ComentarioDTO comentarioDTO
+    ) {
+        comentarioImpl.guarardComentarios(publicacionId, comentarioDTO);
+        return new ResponseEntity<>("Comentario guardado exitosamente.", HttpStatus.CREATED);
+    }
+
     @GetMapping("/publicacion/{id}")
     public ResponseEntity<?> obtenerComentariosPorPublicacion(@PathVariable Integer id) {
         List<Comentario> comentarios = comentarioImpl.getComentariosByPublicacion(id);

@@ -10,6 +10,7 @@ import com.blog.futblog.Models.Comentario;
 import com.blog.futblog.Models.Publicacion;
 import com.blog.futblog.Models.User;
 import com.blog.futblog.Repository.ComentarioRepository;
+import com.blog.futblog.Repository.PublicacionRepository;
 import com.blog.futblog.Services.ComentarioService;
 
 @Service
@@ -23,6 +24,9 @@ public class ComentarioImpl implements ComentarioService {
 
     @Autowired
     PublicacionImpl publicacionImpl;
+
+    @Autowired
+    private PublicacionRepository publicacionRepository;
 
     @Override
     public Comentario saveComentario(ComentarioDTO dto) {
@@ -50,5 +54,22 @@ public class ComentarioImpl implements ComentarioService {
         return comentarios;
 
     }
+
+    @Override
+    public Comentario guarardComentarios(int publicacionId, ComentarioDTO comentarioDTO) {
+        User usuario = usuarioImpl.findUserById(comentarioDTO.getUsuario());
+        Publicacion publicacion = publicacionRepository.findById(publicacionId)
+        .orElseThrow(() -> new RuntimeException("Publicación no encontrada"));
+
+        Comentario comentario = new Comentario();
+        comentario.setContenido(comentarioDTO.getContenido());
+        comentario.setUsuario(usuario);
+        comentario.setPublicacion(publicacion);
+
+        comentarioRepository.save(comentario);
+        return comentario;
+    }
+
+    
 
 }

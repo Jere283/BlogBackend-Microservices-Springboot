@@ -10,4 +10,6 @@ public interface PublicacionService {
     public Publicacion savePublicacion(PublicacionDTO dto);
 
     public List<Publicacion> getAllPublicaciones();
+
+    public Publicacion getPublicacionById(Integer id);
 }

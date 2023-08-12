@@ -1,5 +1,7 @@
 package com.blog.futblog.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -21,8 +23,14 @@ public class Comentario {
 
     private String contenido;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "usuario_id", referencedColumnName = "id")
     private User usuario;
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "id_publicacion", referencedColumnName = "id")
+    private Publicacion publicacion;
 
 }

@@ -41,4 +41,11 @@ public class PublicacionImpl implements PublicacionService {
         return publicaciones;
     }
 
+    @Override
+    public Publicacion getPublicacionById(Integer id) {
+        Publicacion publicacion = publicacionRepository.findById(id).orElse(null);
+
+        return publicacion;
+    }
+
 }

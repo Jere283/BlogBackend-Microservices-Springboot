@@ -7,4 +7,5 @@ public class ComentarioDTO {
 
     private String contenido;
     private Integer usuario;
+    private Integer publicacion;
 }

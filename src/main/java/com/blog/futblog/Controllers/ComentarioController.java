@@ -46,7 +46,7 @@ public class ComentarioController {
         List<Comentario> comentarios = comentarioImpl.getComentariosByPublicacion(id);
 
         if (comentarios.isEmpty()) {
-            return new ResponseEntity<String>("No hay comentarios en esta publicacion", HttpStatus.NOT_ACCEPTABLE);
+            return null;
         }
 
         return new ResponseEntity<List<Comentario>>(comentarios, HttpStatus.OK);

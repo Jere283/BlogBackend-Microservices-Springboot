@@ -23,7 +23,7 @@ public class Comentario {
 
     private String contenido;
 
-    @JsonIgnore
+    
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "usuario_id", referencedColumnName = "id")
     private User usuario;

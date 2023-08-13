@@ -32,9 +32,22 @@ public class SeguidoresController {
     }
     
     @PostMapping("/{seguidorId}/seguir/{seguidoId}")
-    public ResponseEntity<Seguidores> seguir(@PathVariable("seguidorId") Integer seguidorId, @PathVariable("seguidoId") Integer seguidoId) {
-        Seguidores seguidores = seguidoresImpl.Seguir(seguidorId, seguidoId);
-        return ResponseEntity.ok(seguidores);
+    public ResponseEntity<String> seguir(@PathVariable("seguidorId") Integer seguidorId, @PathVariable("seguidoId") Integer seguidoId) {
+        Boolean existeSeguidor = seguidoresImpl.comporbar(seguidorId, seguidoId);
+        String mensaje;
+
+        if (Boolean.TRUE.equals(existeSeguidor)) {
+            mensaje="Este usuario ya sigue a este otro usuario, no se puede volver a seguir";
+        }else{
+            Seguidores nuevoSeguidor = seguidoresImpl.Seguir(seguidorId, seguidoId);
+            if (nuevoSeguidor != null) {
+                mensaje = "Usuario seguido exitosamente";
+            } else {
+                mensaje = "No se pudo crear el objeto Seguidores";
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(mensaje);
+            }
+        }
+        return ResponseEntity.ok(mensaje);
     }
 
     @GetMapping("/comprobar-seguimiento/{seguidorId}/{seguidoId}")

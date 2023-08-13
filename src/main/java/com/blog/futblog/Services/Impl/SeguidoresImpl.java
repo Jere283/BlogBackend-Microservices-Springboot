@@ -61,6 +61,23 @@ public class SeguidoresImpl implements SeguidoresService{
     }
 
     @Override
+    public Boolean comporbar(int seguidorId, int seguidoId) {
+        User seguidor = usuarioRepository.findById(seguidorId)
+        .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+        User seguido = usuarioRepository.findById(seguidoId)
+        .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+        Seguidores seguidores= seguidoresRepository.findBySeguidorusuarioAndSeguidousuario(seguidor, seguido);
+        Boolean mensaje;
+        if (seguidores!=null) {
+            mensaje=true;
+        }else{
+            mensaje=false;
+        }
+        return mensaje;
+    }
+
+
+    @Override
     public String eliminarSeguimiento(int seguidorId, int seguidoId) {
         User seguidor = usuarioRepository.findById(seguidorId)
         .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));

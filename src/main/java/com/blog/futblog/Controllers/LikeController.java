@@ -26,16 +26,28 @@ public class LikeController {
     }
 
     @PostMapping("/darlike/{publicacionId}/{usuarioId}")
-    public ResponseEntity<Like> guardarLike(@PathVariable int publicacionId, @PathVariable int usuarioId) {
-        Like like = Likeimpl.guardarLike(publicacionId, usuarioId);
+    public ResponseEntity<String> guardarLike(@PathVariable int publicacionId, @PathVariable int usuarioId) {
+        Boolean existeLike = Likeimpl.comporbar(publicacionId, usuarioId);
+        String mensaje;
 
-        return new ResponseEntity<Like>(like, HttpStatus.OK);
+        if (Boolean.TRUE.equals(existeLike)) {
+            mensaje="Este usuario ya dio like a esta publicacion";
+        }else{
+            mensaje=Likeimpl.guardarLike(publicacionId, usuarioId);
+        }
+        return ResponseEntity.ok(mensaje);
     }
 
-    @DeleteMapping("/unlike/{likeId}")
-    public ResponseEntity<String> eliminarLikePorId(@PathVariable int likeId) {
-        Likeimpl.eliminarLikePorId(likeId);
-        return new ResponseEntity<String>("El Like se ha quitado correctamente", HttpStatus.OK);
+    @DeleteMapping("/unlike/{publicacionId}/{usuarioId}")
+    public ResponseEntity<String> eliminarLikePorId(@PathVariable int publicacionId, @PathVariable int usuarioId) {
+        Boolean existeLike = Likeimpl.comporbar(publicacionId, usuarioId);
+        String mensaje;
+        if (Boolean.TRUE.equals(existeLike)) {
+            mensaje=Likeimpl.quitarLike(publicacionId, usuarioId);
+        }else{
+            mensaje="No se puede quitar like porque no ha dado like a la publicacion";
+        }
+        return ResponseEntity.ok(mensaje);
     }
 
 }

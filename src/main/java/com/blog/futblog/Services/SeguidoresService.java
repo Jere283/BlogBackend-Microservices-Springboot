@@ -13,4 +13,6 @@ public interface SeguidoresService {
     public String comporbarSeguimiento(int seguidorId, int seguidoId);
 
     public String eliminarSeguimiento(int seguidorId, int seguidoId);
+
+    public Boolean comporbar(int seguidorId, int seguidoId);
 }

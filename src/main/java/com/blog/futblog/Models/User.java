@@ -41,4 +41,8 @@ public class User {
     @JsonIgnore
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
     private List<Comentario> comentarios;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "likeusuario", cascade = CascadeType.ALL)
+    private List<Like> likes;
 }

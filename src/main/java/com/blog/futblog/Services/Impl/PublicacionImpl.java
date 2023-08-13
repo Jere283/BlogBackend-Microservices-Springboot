@@ -25,7 +25,7 @@ public class PublicacionImpl implements PublicacionService {
         User usuario = usuarioImpl.findUserById(dto.getUsuario());
         Publicacion publicacion = new Publicacion();
         publicacion.setContenido(dto.getContenido());
-        publicacion.setLikes(dto.getLikes());
+        //publicacion.setLikes(dto.getLikes());
         publicacion.setTitulo(dto.getTitulo());
         publicacion.setUsuario(usuario);
 

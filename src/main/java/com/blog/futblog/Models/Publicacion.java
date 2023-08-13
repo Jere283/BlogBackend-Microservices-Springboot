@@ -38,8 +38,6 @@ public class Publicacion {
     @Column(columnDefinition = "TEXT")
     private String contenido;
 
-    private Integer likes;
-
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_usuario", referencedColumnName = "id")
     private User usuario;
@@ -47,5 +45,9 @@ public class Publicacion {
     @JsonIgnore
     @OneToMany(mappedBy = "publicacion", cascade = CascadeType.ALL)
     private List<Comentario> comentarios;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "likepublicacion", cascade = CascadeType.ALL)
+    private List<Like> likes;
 
 }

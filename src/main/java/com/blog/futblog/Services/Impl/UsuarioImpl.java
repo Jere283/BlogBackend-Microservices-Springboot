@@ -34,4 +34,21 @@ public class UsuarioImpl implements UsuarioService {
         return user;
     }
 
+    @Override
+    public String userExists(String username, String email) {
+
+        User byEmail = usuarioRepository.findUserByEmail(email);
+        User byUname = usuarioRepository.findUserByUsername(username);
+
+        if (byEmail != null) {
+            return "El correo ya existe";
+        }
+
+        if (byUname != null) {
+            return "El nombre de usuario ya existe";
+        }
+
+        return null;
+    }
+
 }

@@ -19,11 +19,18 @@ public class UsuarioController {
     UsuarioImpl usuarioImpl;
 
     @PostMapping("/save")
-    public ResponseEntity<User> RegistrarUsuario(@RequestBody RegistrarUsuarioDTO dto) {
+    public ResponseEntity<?> RegistrarUsuario(@RequestBody RegistrarUsuarioDTO dto) {
 
-        User user = usuarioImpl.savUser(dto);
+        String body = usuarioImpl.userExists(dto.getUsername(), dto.getEmail());
 
-        return new ResponseEntity<User>(user, HttpStatus.OK);
+        if (body == null) {
+            User user = usuarioImpl.savUser(dto);
+
+            return new ResponseEntity<User>(user, HttpStatus.OK);
+        }
+
+        return new ResponseEntity<String>(body, HttpStatus.INTERNAL_SERVER_ERROR);
+
     }
 
 }

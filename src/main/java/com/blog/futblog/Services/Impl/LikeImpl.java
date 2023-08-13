@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.blog.futblog.Models.Like;
 import com.blog.futblog.Models.Publicacion;
-import com.blog.futblog.Models.Seguidores;
 import com.blog.futblog.Models.User;
 import com.blog.futblog.Repository.LikeRepository;
 import com.blog.futblog.Repository.PublicacionRepository;
@@ -41,23 +40,23 @@ public class LikeImpl implements LikeService {
         like.setLikeusuario(user);
         like.setLikepublicacion(publicacion);
         likeRepository.save(like);
-        String nUsuario=user.getNombre();
-        String nPublicacion=publicacion.getTitulo();
-        return nUsuario+ " dio like a la publicacion "+ nPublicacion;
+        String nUsuario = user.getNombre();
+        String nPublicacion = publicacion.getTitulo();
+        return nUsuario + " dio like a la publicacion " + nPublicacion;
     }
 
     @Override
     public Boolean comporbar(int publicacionId, int usuarioId) {
         User usuario = usuarioRepository.findById(usuarioId)
-        .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
         Publicacion publicacion = publicacionRepository.findById(publicacionId)
-        .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
         Like like = likeRepository.findByLikeusuarioAndLikepublicacion(usuario, publicacion);
         Boolean mensaje;
-        if (like!=null) {
-            mensaje=true;
-        }else{
-            mensaje=false;
+        if (like != null) {
+            mensaje = true;
+        } else {
+            mensaje = false;
         }
         return mensaje;
     }
@@ -78,9 +77,9 @@ public class LikeImpl implements LikeService {
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
         Like like = likeRepository.findByLikeusuarioAndLikepublicacion(user, publicacion);
         likeRepository.delete(like);
-        String nUsuario=user.getNombre();
-        String nPublicacion=publicacion.getTitulo();
-        return nUsuario + " quitó el like a la publicacion: "+ nPublicacion;
+        String nUsuario = user.getNombre();
+        String nPublicacion = publicacion.getTitulo();
+        return nUsuario + " quitó el like a la publicacion: " + nPublicacion;
     }
 
 }

@@ -1,6 +1,5 @@
 package com.blog.futblog.Services;
 
-import com.blog.futblog.Models.Like;
 import com.blog.futblog.Models.Seguidores;
 
 public interface SeguidoresService {

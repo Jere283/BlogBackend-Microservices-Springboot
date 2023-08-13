@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.blog.futblog.Models.Like;
 import com.blog.futblog.Services.Impl.LikeImpl;
 
 @RestController
@@ -31,9 +30,9 @@ public class LikeController {
         String mensaje;
 
         if (Boolean.TRUE.equals(existeLike)) {
-            mensaje="Este usuario ya dio like a esta publicacion";
-        }else{
-            mensaje=Likeimpl.guardarLike(publicacionId, usuarioId);
+            mensaje = "Este usuario ya dio like a esta publicacion";
+        } else {
+            mensaje = Likeimpl.guardarLike(publicacionId, usuarioId);
         }
         return ResponseEntity.ok(mensaje);
     }
@@ -43,9 +42,9 @@ public class LikeController {
         Boolean existeLike = Likeimpl.comporbar(publicacionId, usuarioId);
         String mensaje;
         if (Boolean.TRUE.equals(existeLike)) {
-            mensaje=Likeimpl.quitarLike(publicacionId, usuarioId);
-        }else{
-            mensaje="No se puede quitar like porque no ha dado like a la publicacion";
+            mensaje = Likeimpl.quitarLike(publicacionId, usuarioId);
+        } else {
+            mensaje = "No se puede quitar like porque no ha dado like a la publicacion";
         }
         return ResponseEntity.ok(mensaje);
     }

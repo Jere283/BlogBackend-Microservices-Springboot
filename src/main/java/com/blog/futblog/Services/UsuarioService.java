@@ -8,4 +8,6 @@ public interface UsuarioService {
     public User findUserById(Integer id);
 
     public User savUser(RegistrarUsuarioDTO dto);
+
+    public String userExists(String username, String email);
 }

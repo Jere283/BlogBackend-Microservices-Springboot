@@ -1,7 +1,5 @@
 package com.blog.futblog.Services;
 
-import com.blog.futblog.Models.Like;
-
 public interface LikeService {
     public int countLikesForPublicacion(int publicacionId);
 

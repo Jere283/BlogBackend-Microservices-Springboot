@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -37,8 +36,7 @@ public class ComentarioController {
     @PostMapping("/crear/id/{publicacionId}")
     public ResponseEntity<String> guardarComentario(
             @PathVariable int publicacionId,
-            @RequestBody ComentarioDTO comentarioDTO
-    ) {
+            @RequestBody ComentarioDTO comentarioDTO) {
         comentarioImpl.guarardComentarios(publicacionId, comentarioDTO);
         return new ResponseEntity<>("Comentario guardado exitosamente.", HttpStatus.CREATED);
     }
@@ -48,7 +46,7 @@ public class ComentarioController {
         List<Comentario> comentarios = comentarioImpl.getComentariosByPublicacion(id);
 
         if (comentarios.isEmpty()) {
-           return null;
+            return new ResponseEntity<String>("No hay comentarios en esta publicacion", HttpStatus.NOT_ACCEPTABLE);
         }
 
         return new ResponseEntity<List<Comentario>>(comentarios, HttpStatus.OK);

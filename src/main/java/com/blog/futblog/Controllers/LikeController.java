@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.blog.futblog.Models.Like;
@@ -21,13 +20,16 @@ public class LikeController {
     LikeImpl Likeimpl;
 
     @GetMapping("/publicacion/{publicacionId}")
-    public int countLikesForPublicacion(@PathVariable Integer publicacionId) {
-        return Likeimpl.countLikesForPublicacion(publicacionId);
+    public ResponseEntity<Integer> countLikesForPublicacion(@PathVariable Integer publicacionId) {
+        Integer contador = Likeimpl.countLikesForPublicacion(publicacionId);
+        return new ResponseEntity<Integer>(contador, HttpStatus.OK);
     }
 
     @PostMapping("/darlike/{publicacionId}/{usuarioId}")
-    public Like guardarLike(@PathVariable int publicacionId, @PathVariable int usuarioId) {
-        return Likeimpl.guardarLike(publicacionId, usuarioId);
+    public ResponseEntity<Like> guardarLike(@PathVariable int publicacionId, @PathVariable int usuarioId) {
+        Like like = Likeimpl.guardarLike(publicacionId, usuarioId);
+
+        return new ResponseEntity<Like>(like, HttpStatus.OK);
     }
 
     @DeleteMapping("/unlike/{likeId}")
@@ -35,5 +37,5 @@ public class LikeController {
         Likeimpl.eliminarLikePorId(likeId);
         return new ResponseEntity<String>("El Like se ha quitado correctamente", HttpStatus.OK);
     }
-    
+
 }

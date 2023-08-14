@@ -3,6 +3,7 @@ package com.blog.futblog.Services.Impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.blog.futblog.DTO.LoginDTO;
 import com.blog.futblog.DTO.RegistrarUsuarioDTO;
 import com.blog.futblog.Models.User;
 import com.blog.futblog.Repository.UsuarioRepository;
@@ -49,6 +50,33 @@ public class UsuarioImpl implements UsuarioService {
         }
 
         return null;
+    }
+
+    @Override
+    public User findUserByEmail(String email) {
+        return usuarioRepository.findUserByEmail(email);
+    }
+
+    @Override
+    public User findUserByUserName(String username) {
+        return usuarioRepository.findUserByUsername(username);
+    }
+
+    @Override
+    public User LoginUser(LoginDTO dto) {
+        User user = findUserByEmail(dto.getUsernameOrEmail());
+
+        if (user == null) {
+            user = findUserByUserName(dto.getUsernameOrEmail());
+        }
+
+        if (user == null) {
+            return null;
+        } else if (user.getClave().equals(dto.getClave())) {
+            return user;
+        }
+        return null;
+
     }
 
 }

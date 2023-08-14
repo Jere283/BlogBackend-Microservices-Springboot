@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.blog.futblog.DTO.LoginDTO;
 import com.blog.futblog.DTO.RegistrarUsuarioDTO;
 import com.blog.futblog.Models.User;
 import com.blog.futblog.Services.Impl.UsuarioImpl;
@@ -18,7 +19,7 @@ public class UsuarioController {
     @Autowired
     UsuarioImpl usuarioImpl;
 
-    @PostMapping("/save")
+    @PostMapping("/register")
     public ResponseEntity<?> RegistrarUsuario(@RequestBody RegistrarUsuarioDTO dto) {
 
         String body = usuarioImpl.userExists(dto.getUsername(), dto.getEmail());
@@ -29,7 +30,19 @@ public class UsuarioController {
             return new ResponseEntity<User>(user, HttpStatus.OK);
         }
 
-        return new ResponseEntity<String>(body, HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<String>(body, HttpStatus.NOT_ACCEPTABLE);
+
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<?> LoginUsuario(@RequestBody LoginDTO dto) {
+        User user = usuarioImpl.LoginUser(dto);
+
+        if (user == null) {
+            return new ResponseEntity<String>("El usuario o clave esta incorrecto", HttpStatus.NOT_ACCEPTABLE);
+        }
+
+        return new ResponseEntity<User>(user, HttpStatus.OK);
 
     }
 

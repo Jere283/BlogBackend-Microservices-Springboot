@@ -12,4 +12,6 @@ public interface PublicacionService {
     public List<Publicacion> getAllPublicaciones();
 
     public Publicacion getPublicacionById(Integer id);
+
+    public List<Publicacion> getAllPublicacionsFromUser(Integer userID);
 }

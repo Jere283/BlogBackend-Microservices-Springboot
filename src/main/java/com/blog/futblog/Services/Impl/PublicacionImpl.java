@@ -25,7 +25,7 @@ public class PublicacionImpl implements PublicacionService {
         User usuario = usuarioImpl.findUserById(dto.getUsuario());
         Publicacion publicacion = new Publicacion();
         publicacion.setContenido(dto.getContenido());
-        //publicacion.setLikes(dto.getLikes());
+        // publicacion.setLikes(dto.getLikes());
         publicacion.setTitulo(dto.getTitulo());
         publicacion.setUsuario(usuario);
 
@@ -48,6 +48,18 @@ public class PublicacionImpl implements PublicacionService {
         return publicacion;
     }
 
-    
+    @Override
+    public List<Publicacion> getAllPublicacionsFromUser(Integer userID) {
+        User user = usuarioImpl.findUserById(userID);
+
+        if (user == null) {
+            return null;
+        }
+
+        List<Publicacion> publicacionesDeUsuario = user.getPublicaciones();
+
+        return publicacionesDeUsuario;
+
+    }
 
 }

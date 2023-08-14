@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -49,5 +50,16 @@ public class PublicacionController {
 
         return new ResponseEntity<Publicacion>(publicacion, HttpStatus.OK);
 
+    }
+
+    @GetMapping("/user/{id}")
+    public ResponseEntity<?> ObtenerPublicacionPorUsuario(@PathVariable int id) {
+        List<Publicacion> publicaconesDeUsuario = publicacionImpl.getAllPublicacionsFromUser(id);
+
+        if (publicaconesDeUsuario == null) {
+            return new ResponseEntity<String>("El usuario no tiene publicaciones", HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity<List<Publicacion>>(publicaconesDeUsuario, HttpStatus.OK);
     }
 }

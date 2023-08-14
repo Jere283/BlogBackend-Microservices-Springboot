@@ -50,6 +50,22 @@ public class SeguidoresController {
         return ResponseEntity.ok(mensaje);
     }
 
+    @DeleteMapping("/eliminar-seguimiento/{seguidorId}/{seguidoId}")
+    public ResponseEntity<String> eliminarSeguimiento(
+        @PathVariable int seguidorId,
+        @PathVariable int seguidoId) {
+        String mensaje;
+
+        Boolean existeSeguidor = seguidoresImpl.comporbar(seguidorId, seguidoId);
+        if (Boolean.TRUE.equals(existeSeguidor)) {
+            mensaje=seguidoresImpl.eliminarSeguimiento(seguidorId, seguidoId);
+        }else{
+            mensaje="Este usuario ya sigue a este otro usuario, no se puede volver a seguir";
+        }
+        //
+        return ResponseEntity.ok(mensaje);
+    }
+
     @GetMapping("/comprobar-seguimiento/{seguidorId}/{seguidoId}")
     public ResponseEntity<String> comprobarSeguimiento(
         @PathVariable int seguidorId,
@@ -58,11 +74,12 @@ public class SeguidoresController {
         return ResponseEntity.ok(mensaje);
     }
 
-    @DeleteMapping("/eliminar-seguimiento/{seguidorId}/{seguidoId}")
+    /*@DeleteMapping("/eliminar-seguimiento/{seguidorId}/{seguidoId}")
     public ResponseEntity<String> eliminarSeguimiento(
         @PathVariable int seguidorId,
         @PathVariable int seguidoId) {
         String mensaje=seguidoresImpl.eliminarSeguimiento(seguidorId, seguidoId);
         return ResponseEntity.ok(mensaje);
-    }
+    }*/
+
 }

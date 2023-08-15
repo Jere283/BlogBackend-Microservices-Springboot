@@ -10,5 +10,5 @@ import lombok.Data;
 public class EncuestasDTO {
     private String titulo;
     private Integer usuario;
-    //private List<Preguntas> preguntas;
+    private List<Preguntas> preguntas;
 }

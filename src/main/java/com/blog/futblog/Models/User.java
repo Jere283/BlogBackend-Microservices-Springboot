@@ -47,4 +47,14 @@ public class User {
     @JsonIgnore
     @OneToMany(mappedBy = "likeusuario", cascade = CascadeType.ALL)
     private List<Like> likes;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "encuestausuario", cascade = CascadeType.ALL)
+    private List<Encuestas> Encuestas;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "votacionusuario", cascade = CascadeType.ALL)
+    private List<Votacion> votacion;
+
+
 }

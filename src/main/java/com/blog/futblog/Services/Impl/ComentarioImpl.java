@@ -70,6 +70,11 @@ public class ComentarioImpl implements ComentarioService {
         return comentario;
     }
 
+    @Override
+    public Integer countComentariosByUsuarioId(Integer usuarioId) {
+        return comentarioRepository.countComentariosByUsuarioId(usuarioId);
+    }
+
     
 
 }

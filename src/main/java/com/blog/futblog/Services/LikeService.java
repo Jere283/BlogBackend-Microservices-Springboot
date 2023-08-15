@@ -11,4 +11,6 @@ public interface LikeService {
 
     public Boolean comporbar(int publicacionId, int usuarioId);
 
+    Integer countLikesByUsuarioId(Integer usuarioId);
+
 }

@@ -82,4 +82,9 @@ public class LikeImpl implements LikeService {
         return nUsuario + " quitó el like a la publicacion: " + nPublicacion;
     }
 
+    @Override
+    public Integer countLikesByUsuarioId(Integer usuarioId) {
+        return likeRepository.countLikesByUsuarioId(usuarioId);
+    }
+
 }

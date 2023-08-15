@@ -51,4 +51,12 @@ public class ComentarioController {
 
         return new ResponseEntity<List<Comentario>>(comentarios, HttpStatus.OK);
     }
+
+    @GetMapping("/contartotal/usuario/{usuarioId}")
+    public ResponseEntity<Integer> contarComentariosPorUsuarioId(@PathVariable Integer usuarioId) {
+        Integer cantidadComentarios = comentarioImpl.countComentariosByUsuarioId(usuarioId);
+        return ResponseEntity.ok(cantidadComentarios);
+    }
+
+    
 }

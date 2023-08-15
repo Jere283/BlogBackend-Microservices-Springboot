@@ -76,4 +76,10 @@ public class PublicacionController {
         String mensaje = "Publicación con ID " + publicacionId + " ha sido eliminada";
         return ResponseEntity.ok(mensaje);
     }
+
+    @GetMapping("/contar/{usuarioId}")
+    public ResponseEntity<Integer> contarPublicacionesPorUsuarioId(@PathVariable Integer usuarioId) {
+        Integer cantidadPublicaciones = publicacionImpl.contarPublicacionesPorUsuarioId(usuarioId);
+        return ResponseEntity.ok(cantidadPublicaciones);
+    }
 }

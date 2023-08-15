@@ -12,4 +12,6 @@ public interface ComentarioService {
     public Comentario guarardComentarios(int publicacionId, ComentarioDTO comentarioDTO);
 
     public List<Comentario> getComentariosByPublicacion(Integer idPublicacion);
+
+    Integer countComentariosByUsuarioId(Integer usuarioId);
 }

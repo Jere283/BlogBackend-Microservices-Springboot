@@ -49,4 +49,10 @@ public class LikeController {
         return ResponseEntity.ok(mensaje);
     }
 
+    @GetMapping("/total/usuario/{usuarioId}")
+    public ResponseEntity<Integer> contarLikesPorUsuarioId(@PathVariable Integer usuarioId) {
+        Integer cantidadLikes = Likeimpl.countLikesByUsuarioId(usuarioId);
+        return ResponseEntity.ok(cantidadLikes);
+    }
+
 }

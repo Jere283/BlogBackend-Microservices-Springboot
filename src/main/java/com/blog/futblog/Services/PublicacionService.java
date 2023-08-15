@@ -19,4 +19,6 @@ public interface PublicacionService {
     List<Categorias> obtenerCategoriasDePublicacion(Integer publicacionId);
 
     public String eliminarPublicacion(Integer id);
+
+    Integer contarPublicacionesPorUsuarioId(Integer usuarioId);
 }

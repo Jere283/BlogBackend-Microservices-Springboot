@@ -93,6 +93,10 @@ public class PublicacionImpl implements PublicacionService {
     return "Publicación con ID " + id + " ha sido eliminada";
     }
 
+    public Integer contarPublicacionesPorUsuarioId(Integer usuarioId) {
+        return publicacionRepository.countPublicacionesByUsuarioId(usuarioId);
+    }
+
 }
 
 

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.blog.futblog.DTO.PublicacionDTO;
+import com.blog.futblog.Models.Categorias;
 import com.blog.futblog.Models.Publicacion;
 import com.blog.futblog.Services.Impl.PublicacionImpl;
 
@@ -61,5 +63,18 @@ public class PublicacionController {
         }
 
         return new ResponseEntity<List<Publicacion>>(publicaconesDeUsuario, HttpStatus.OK);
+    }
+
+    @GetMapping("/{publicacionId}/categorias")
+    public ResponseEntity<List<Categorias>> obtenerCategoriasDePublicacion(@PathVariable Integer publicacionId) {
+        List<Categorias> categorias = publicacionImpl.obtenerCategoriasDePublicacion(publicacionId);
+        return ResponseEntity.ok(categorias);
+    }
+
+    @DeleteMapping("/eliminar/{publicacionId}")
+    public ResponseEntity<String> eliminarPublicacion(@PathVariable Integer publicacionId) {
+        publicacionImpl.eliminarPublicacion(publicacionId);
+        String mensaje = "Publicación con ID " + publicacionId + " ha sido eliminada";
+        return ResponseEntity.ok(mensaje);
     }
 }

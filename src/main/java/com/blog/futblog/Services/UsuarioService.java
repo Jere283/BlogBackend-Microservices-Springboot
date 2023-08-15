@@ -17,4 +17,5 @@ public interface UsuarioService {
     public User findUserByEmail(String email);
 
     public User LoginUser(LoginDTO dto);
+
 }

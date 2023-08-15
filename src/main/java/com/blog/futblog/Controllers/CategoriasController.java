@@ -10,12 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
-import com.blog.futblog.DTO.CategoriaDTO;
 import com.blog.futblog.Models.Categorias;
 import com.blog.futblog.Services.CategoriasService;
-
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
-import jakarta.websocket.server.PathParam;
 
 @RestController
 @RequestMapping("/api/categorias")
@@ -29,7 +25,7 @@ public class CategoriasController {
         return ResponseEntity.ok(categorias);
     }
 
-    //Solo se envia el titulo de la categoria
+    // Solo se envia el titulo de la categoria
     @PostMapping("/crear/{categoria}")
     public ResponseEntity<String> crearCategoria(@PathVariable String categoria) {
         categoriasService.crearCategoria(categoria);

@@ -13,10 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.blog.futblog.DTO.EncuestasDTO;
 import com.blog.futblog.Models.Encuestas;
-import com.blog.futblog.Models.Publicacion;
 import com.blog.futblog.Services.EncuestasService;
-import com.blog.futblog.Services.PublicacionService;
-
 import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
@@ -25,15 +22,12 @@ public class EncuestaController {
     @Autowired
     private EncuestasService encuestasService;
 
-    
     @PostMapping("/crear")
-    public ResponseEntity<?> crearEncuesta(@RequestBody EncuestasDTO encuestaDTO)
-    {
-    Encuestas encuesta = encuestasService.crearEncuesta(encuestaDTO);
-    return ResponseEntity.ok().body(encuesta);
+    public ResponseEntity<?> crearEncuesta(@RequestBody EncuestasDTO encuestaDTO) {
+        Encuestas encuesta = encuestasService.crearEncuesta(encuestaDTO);
+        return ResponseEntity.ok().body(encuesta);
     }
 
-     
     @DeleteMapping("/eliminar/{id}")
     public ResponseEntity<String> eliminarEncuesta(@PathVariable Integer id) {
         try {
@@ -45,7 +39,7 @@ public class EncuestaController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<Encuestas>> ObtenerEncuestas(){
+    public ResponseEntity<List<Encuestas>> ObtenerEncuestas() {
         List<Encuestas> encuestas = encuestasService.getAllEncuetsas();
 
         return new ResponseEntity<List<Encuestas>>(encuestas, HttpStatus.OK);
@@ -63,11 +57,14 @@ public class EncuestaController {
 
     }
 
-    /*@PostMapping("/crear")
-    public ResponseEntity<String> crearEncuesta(@RequestBody EncuestasDTO encuestaDTO) {
-        // Encuestas encuesta = encuestasService.crearEncuesta(encuestaDTO);
-        String mensaje = encuestaDTO.getTitulo();
-        return new ResponseEntity<String>(mensaje, HttpStatus.OK);
-    }*/
+    /*
+     * @PostMapping("/crear")
+     * public ResponseEntity<String> crearEncuesta(@RequestBody EncuestasDTO
+     * encuestaDTO) {
+     * // Encuestas encuesta = encuestasService.crearEncuesta(encuestaDTO);
+     * String mensaje = encuestaDTO.getTitulo();
+     * return new ResponseEntity<String>(mensaje, HttpStatus.OK);
+     * }
+     */
 
 }

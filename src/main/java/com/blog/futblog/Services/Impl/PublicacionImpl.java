@@ -40,14 +40,13 @@ public class PublicacionImpl implements PublicacionService {
         List<Categorias> categorias = new ArrayList<>();
 
         // TODO descomentar esta parte para poder agregar categorias
-        Categorias categoria = categoriasRepository.findById(1).orElse(null);
-        categorias.add(categoria);
-        /*
-         * for (Integer categoriaId : categoriaIds) {
-         * categorias.add(categoriasRepository.findById(categoriaId)
-         * .orElseThrow(() -> new RuntimeException("Categoría no encontrada")));
-         * }
-         */
+       
+        
+         for (Integer categoriaId : categoriaIds) {
+          categorias.add(categoriasRepository.findById(categoriaId)
+         .orElseThrow(() -> new RuntimeException("Categoría no encontrada")));
+         }
+         
         // publicacion.setLikes(dto.getLikes());
         publicacion.setTitulo(dto.getTitulo());
         publicacion.setUsuario(usuario);

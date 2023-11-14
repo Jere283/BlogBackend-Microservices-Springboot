@@ -16,6 +16,7 @@ To get started with the project, follow these steps:
 git clone https://github.com/Jere283/BlogBackend-Microservices-Springboot
 
 Connect your database in the application properties file
+
 ![image](https://github.com/Jere283/BlogBackend-RestAPI-Springboot/assets/111548280/642f30c5-4024-46d6-9776-aeb2b41d4394)
 
 Navigate to the project directory:
@@ -30,3 +31,6 @@ Once the application is running, you can access the Swagger UI at:
 http://localhost:8080/swagger-ui.html
 
 Here, you can view the API endpoints and their corresponding request/response
+
+![image](https://github.com/Jere283/BlogBackend-RestAPI-Springboot/assets/111548280/e5030a16-3edc-483b-8041-a786f5dc057c)
+

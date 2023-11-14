@@ -49,16 +49,8 @@ public class Publicacion {
     private List<Comentario> comentarios;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "likepublicacion", cascade = CascadeType.ALL)
-    private List<Like> likes;
-
-    @JsonIgnore
     @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-    @JoinTable(
-        name = "publicacion_categoria",
-        joinColumns = @JoinColumn(name = "publicacion_id"),
-        inverseJoinColumns = @JoinColumn(name = "categoria_id")
-    )
+    @JoinTable(name = "publicacion_categoria", joinColumns = @JoinColumn(name = "publicacion_id"), inverseJoinColumns = @JoinColumn(name = "categoria_id"))
     private List<Categorias> categorias;
 
 }
